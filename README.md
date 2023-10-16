@@ -1,4 +1,4 @@
-# ⛅ APK-check application
+# ⛅ Weather app
 
 I programmed a weather app.
 
