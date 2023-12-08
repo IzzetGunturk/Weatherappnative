@@ -1,10 +1,9 @@
 import { StyleSheet, TextInput, View, ImageBackground, TouchableOpacity, Text} from 'react-native';
 import axios from 'axios';
 import React, { useState } from 'react';
+import { API_KEY } from './config';
 
 export default function App() {
-
-  const API_KEY = '[API-KEY]';
 
   const [searchCity, setSearchCity] = useState('');
   const [weatherData, setWeatherData] = useState(null);
