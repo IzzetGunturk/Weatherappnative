@@ -7,6 +7,7 @@ export default function App() {
 
   const [searchCity, setSearchCity] = useState('');
   const [weatherData, setWeatherData] = useState(null);
+  const [errorMessage, setErrorMessage] = useState('');
 
   const fetchData = async () => {
     try {
@@ -14,8 +15,10 @@ export default function App() {
         `https://api.openweathermap.org/data/2.5/weather?q=${searchCity}&appid=${API_KEY}&units=metric`
       );
       setWeatherData(result.data);
+      setErrorMessage('');
     } catch (error) {
       console.log("Data can not be fetched.");
+      setErrorMessage('Locatie niet gevonden')
     }
   };
 
@@ -38,12 +41,16 @@ export default function App() {
         </TouchableOpacity>
       </View>
 
-      {weatherData && (
-      <View style={styles.weatherInfo}>
-        <Text> City: {weatherData.name}</Text>
-        <Text> Temperature: {weatherData.main.temp}°C</Text>
-      </View>
-      )}
+      {weatherData ? (
+        <View style={styles.weatherInfo}>
+          <Text>City: {weatherData.name}</Text>
+          <Text>Temperature: {weatherData.main.temp}°C</Text>
+        </View>
+      ) : errorMessage ? (
+        <View style={styles.weatherInfo}>
+          <Text style={styles.errorText}>{errorMessage}</Text>
+        </View>
+      ) : null}
     </View>
   </ImageBackground>
   );
